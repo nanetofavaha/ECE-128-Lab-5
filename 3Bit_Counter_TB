@@ -1,1 +1,25 @@
+reg clk, reset;
+wire Q0, Q1, Q2;
+
+Counter3Bit uut(clk, reset, Q0, Q1, Q2);
+
+
+initial begin
+    clk = 1'b0;
+    forever #10 clk = ~clk;
+end
+
+
+initial begin
+
+    reset = 1'b1;
+
+    #20 reset = 1'b0;
+
+    // Allow counter to count through all states
+    #160;
+
+    $stop;
+
+end
 
