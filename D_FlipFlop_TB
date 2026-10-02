@@ -1,1 +1,80 @@
+module DFF_Sync_TB();
+
+reg D, clk, rstn;
+wire Q;
+
+DFF_Sync uut(D, clk, rstn, Q);
+
+
+// Generate clock
+initial begin
+    clk = 1'b0;
+    forever #10 clk = ~clk;
+end
+
+
+// Test inputs
+initial begin
+
+    D = 1'b0;
+    rstn = 1'b0;
+
+    #25 rstn = 1'b1;
+
+    #20 D = 1'b1;
+
+    #20 D = 1'b0;
+
+    #20 D = 1'b1;
+
+    // Test synchronous reset
+    #10 rstn = 1'b0;
+
+    #20 rstn = 1'b1;
+
+    #20 $stop;
+
+end
+
+endmodule
+
+module DFF_Async_TB();
+
+reg D, clk, rstn;
+wire Q;
+
+DFF_Async uut(D, clk, rstn, Q);
+
+
+// Generate clock
+initial begin
+    clk = 1'b0;
+    forever #10 clk = ~clk;
+end
+
+
+// Test inputs
+initial begin
+
+    D = 1'b0;
+    rstn = 1'b0;
+
+    #25 rstn = 1'b1;
+
+    #20 D = 1'b1;
+
+    #20 D = 1'b0;
+
+    #20 D = 1'b1;
+
+    // Async reset between clock edges
+    #5 rstn = 1'b0;
+
+    #10 rstn = 1'b1;
+
+    #30 $stop;
+
+end
+
+endmodule
 
