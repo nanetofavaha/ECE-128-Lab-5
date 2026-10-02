@@ -1,1 +1,33 @@
+module SR_Latch(
+    input S,
+    input R,
+    output Q,
+    output QN
+    );
+
+    nor N1(Q, R, QN);
+    nor N2(QN, S, Q);
+
+endmodule
+
+module SR_FlipFlop(
+    input S,
+    input R,
+    input E,
+    output Q,
+    output QN
+    );
+
+    wire S_enable;
+    wire R_enable;
+    
+    and A1(S_enable, S, E);
+    and A2(R_enable, R, E);
+    
+//    nor N1(Q, R_enable, QN);
+//    nor N2(Qbar, S_enable, Q);
+
+    SR_Latch SRFF(S_enable, R_enable, Q, QN);
+
+endmodule
 
