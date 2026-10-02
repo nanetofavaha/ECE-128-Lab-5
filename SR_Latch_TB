@@ -1,1 +1,40 @@
+module SR_Latch_TB;
+
+reg S, R;
+wire Q, QN;
+
+SR_Latch uut(S, R, Q, QN);
+
+initial begin
+
+    // Reset
+    S = 1'b0;
+    R = 1'b1;
+    #10;
+
+    // Latch / hold
+    S = 1'b0;
+    R = 1'b0;
+    #10;
+
+    // Set
+    S = 1'b1;
+    R = 1'b0;
+    #10;
+
+    // Latch / hold
+    S = 1'b0;
+    R = 1'b0;
+    #10;
+
+    // Invalid state
+    S = 1'b1;
+    R = 1'b1;
+    #10;
+
+    $stop;
+
+end
+
+endmodule
 
