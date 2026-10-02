@@ -1,4 +1,4 @@
-module SR_FlipFlop_TB;
+module SR_FlipFlop_TB();
 
 reg S, R, E;
 wire Q, QN;
