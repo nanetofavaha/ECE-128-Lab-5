@@ -1,3 +1,5 @@
+module Counter3Bit_TB;
+
 reg clk, reset;
 wire Q0, Q1, Q2;
 
@@ -22,4 +24,6 @@ initial begin
     $stop;
 
 end
+
+endmodule
 
