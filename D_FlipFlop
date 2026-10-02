@@ -1,1 +1,38 @@
+module DFF_Sync(
+    input D,
+    input clk,
+    input rstn,
+    output reg Q
+    );
+
+always @(posedge clk)
+begin
+
+    if (!rstn)
+        Q <= 1'b0;
+    else
+        Q <= D;
+
+end
+
+endmodule
+
+module DFF_Async(
+    input D,
+    input clk,
+    input rstn,
+    output reg Q
+    );
+
+always @(posedge clk or negedge rstn)
+begin
+
+    if (!rstn)
+        Q <= 1'b0;
+    else
+        Q <= D;
+
+end
+
+endmodule
 
