@@ -1,1 +1,12 @@
+module SR_Latch(
+    input S,
+    input R,
+    output Q,
+    output QN
+    );
+
+    nor N1(Q, R, QN);
+    nor N2(QN, S, Q);
+
+endmodule
 
