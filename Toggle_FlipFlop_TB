@@ -1,1 +1,38 @@
+module T_FlipFlop_TB();
+
+reg clk, reset, T;
+wire Q;
+
+T_FlipFlop uut(clk, reset, T, Q);
+
+
+initial begin
+    clk = 1'b0;
+    forever #10 clk = ~clk;
+end
+
+
+initial begin
+
+    reset = 1'b1;
+    T = 1'b0;
+
+    #20 reset = 1'b0;
+
+    // Hold
+    #20 T = 1'b0;
+
+    // Toggle
+    #20 T = 1'b1;
+
+    #80;
+
+    // Hold again
+    T = 1'b0;
+
+    #40 $stop;
+
+end
+
+endmodule
 
