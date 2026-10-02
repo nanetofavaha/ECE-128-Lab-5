@@ -1,1 +1,26 @@
+module Clock_Divider_TB;
+
+reg clock_in;
+wire clock_out;
+
+Clock_Divider uut(clock_in, clock_out);
+
+
+// 100 MHz clock
+// Period = 10 ns
+initial begin
+    clock_in = 1'b0;
+    forever #5 clock_in = ~clock_in;
+end
+
+
+initial begin
+
+    #200;
+
+    $stop;
+
+end
+
+endmodule
 
