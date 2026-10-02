@@ -1,1 +1,43 @@
+module SR_FlipFlop_TB;
+
+reg S, R, E;
+wire Q, QN;
+
+SR_FlipFlop uut(S, R, E, Q, QN);
+
+initial begin
+
+    // Initialize with reset
+    E = 1'b1;
+    S = 1'b0;
+    R = 1'b1;
+    #10;
+
+    // Disable - should hold
+    E = 1'b0;
+    S = 1'b1;
+    R = 1'b0;
+    #10;
+
+    // Enable and set
+    E = 1'b1;
+    S = 1'b1;
+    R = 1'b0;
+    #10;
+
+    // Hold
+    S = 1'b0;
+    R = 1'b0;
+    #10;
+
+    // Reset
+    S = 1'b0;
+    R = 1'b1;
+    #10;
+
+    $stop;
+
+end
+
+endmodule
 
